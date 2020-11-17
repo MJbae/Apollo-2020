@@ -1,5 +1,7 @@
 import React from "react";
 import { useQuery, gql } from "@apollo/client";
+import styled from "styled-components";
+import Movie from "./Movie";
 
 const GET_MOVIES = gql`
   {
@@ -11,15 +13,54 @@ const GET_MOVIES = gql`
   }
 `;
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+`;
+const Header = styled.header`
+  background-image: linear-gradient(-45deg, #d754ab, #fd723a);
+  height: 45vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+`;
+const Title = styled.h1`
+  font-size: 60px;
+  font-weight: 600;
+  margin-bottom: 20px;
+`;
+const Subtitle = styled.h3`
+  font-size: 35px;
+`;
+const Loading = styled.div`
+  font-size: 18px;
+  opacity: 0.5;
+  font-weight: 500;
+  margin-top: 10px;
+`;
+
 const Home = () => {
   const { loading, data } = useQuery(GET_MOVIES);
-  console.log(loading, data);
-  if (loading) {
-    return <h2>loading...</h2>;
-  }
-  if (data && data.getAllMovies) {
-    return data.getAllMovies.map((m) => <h1>{m.id}</h1>);
-  }
+
+  return (
+    <Container>
+      <Header>
+        <Title>Movie App</Title>
+        <Subtitle>Movies</Subtitle>
+      </Header>
+      {loading && <Loading>Loading...</Loading>}
+      {!loading &&
+        data.getAllMovies &&
+        data.getAllMovies.map((movie, idx) => (
+          <Movie key={idx} id={movie.id} />
+        ))}
+    </Container>
+  );
 };
 
 export default Home;
