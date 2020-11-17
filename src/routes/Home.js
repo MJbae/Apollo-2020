@@ -63,7 +63,7 @@ const Home = () => {
         <Subtitle>Movies</Subtitle>
       </Header>
       {loading && <Loading>Loading...</Loading>}
-      {!loading && data.getAllMovies && (
+      {data?.getAllMovies && (
         <Movies>
           {data.getAllMovies.map((movie) => (
             <Movie
