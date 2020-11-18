@@ -34,7 +34,7 @@ const Container = styled.div`
 `;
 
 const Header = styled.header`
-  height: 70vh;
+  height: 80vh;
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -69,7 +69,6 @@ const Poster = styled.div`
 `;
 
 const Movies = styled.div`
-  height: 10vh;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 25px;

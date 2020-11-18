@@ -9,6 +9,7 @@ const GET_MOVIES = gql`
       id
       title
       medium_cover_image
+      isLiked @client
     }
   }
 `;
@@ -70,6 +71,7 @@ const Home = () => {
               key={movie.id}
               id={movie.id}
               image={movie.medium_cover_image}
+              isLiked={movie.isLiked}
             />
           ))}
         </Movies>
